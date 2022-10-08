@@ -1,0 +1,724 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v2022.6.0"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 0,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:3000/api/users/1",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "authorization-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY1MDYxODMwLCJleHAiOjE2NjUwNjU0MzB9.aXUzCijvsGunKAmLdnY4A9LbBCMKF6PzOzMZwb2Qlis"
+						}
+					],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"id\":1,\n\t\"name\":\"adminModificado\",\n\t\"userName\":\"adminModificado\",\n\t\"password\":\"adminModificado\",\n\t\"phonenumber\":\"(31) 9999-9999\",\n\t\"email\":\"adminModificado@email.com\"\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Update User for params"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 0,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:3000/api/users/",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "authorization-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY1MDYxODMwLCJleHAiOjE2NjUwNjU0MzB9.aXUzCijvsGunKAmLdnY4A9LbBCMKF6PzOzMZwb2Qlis"
+						}
+					],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"name\":\"admin\",\n\t\"userName\":\"admin\",\n\t\"password\":\"admin\",\n\t\"phonenumber\":\"(31) 9999-9999\",\n\t\"email\":\"admin@email.com\"\n}\n",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Update User for body"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 0,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:3000/api/users/",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"id\":1\n}\n",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Delete User for Body"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 0,
+				"request": {
+					"method": "DELETE",
+					"url": "http://localhost:3000/api/users/3",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "",
+						"text": "",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Delete User for params"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 157.30700000000002,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3000/api/users/",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "authorization-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY1MDYxODMwLCJleHAiOjE2NjUwNjU0MzB9.aXUzCijvsGunKAmLdnY4A9LbBCMKF6PzOzMZwb2Qlis"
+						}
+					],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "",
+						"text": "",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "276"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"114-VD4PFp/IO5fRXSUowNJnXjFQUPM\""
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 08 Oct 2022 14:09:53 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 276,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "[{\"id\":6,\"name\":\"joao\",\"userName\":\"joao\",\"password\":\"$2a$10$USxMDc6DWNqe4NyW8Wsfh.JggN.hSowjO0ECoKuLsp3zUbCydzRmq\",\"phonenumber\":\"(31)9999-9999\",\"email\":\"joaoguilheme94@live.com\",\"idPrevilegies\":1,\"createdAt\":\"2022-10-08T14:09:20.929Z\",\"updatedAt\":\"2022-10-08T14:09:20.929Z\"}]"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 157.30700000000002,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "List All Users"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 0,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3000/api/users/2",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "authorization-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY1MDYxODMwLCJleHAiOjE2NjUwNjU0MzB9.aXUzCijvsGunKAmLdnY4A9LbBCMKF6PzOzMZwb2Qlis"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": "",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "List one User for Id"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 0,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:3000/api/users/username/admin",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "authorization-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY1MDYxODMwLCJleHAiOjE2NjUwNjU0MzB9.aXUzCijvsGunKAmLdnY4A9LbBCMKF6PzOzMZwb2Qlis"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": "",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "List  one for username"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 2238.171,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3000/api/users/",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "authorization-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY1MDYxODMwLCJleHAiOjE2NjUwNjU0MzB9.aXUzCijvsGunKAmLdnY4A9LbBCMKF6PzOzMZwb2Qlis"
+						}
+					],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"name\":\"admin\",\n\t\"userName\":\"amanda\",\n\t\"password\":\"amanda\",\n\t\"phonenumber\":\"(31) 9999-9999\",\n\t\"email\":\"amanda@admin.com\"\n}\n",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "Error",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": "",
+						"text": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 2238.171,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Create User"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 0,
+				"request": {
+					"method": "PUT",
+					"url": "http://localhost:3000/api/auth/forgetpassword",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "authorization-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY1MDYxODMwLCJleHAiOjE2NjUwNjU0MzB9.aXUzCijvsGunKAmLdnY4A9LbBCMKF6PzOzMZwb2Qlis"
+						}
+					],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"email\":\"joaoguilherme94@live.com\",\n\t\"password\":\"joaodev\"\n}\n",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Forget Password User"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 106.13300000000001,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3000/api/auth/login",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"userName\":\"josao\",\n\t\"password\":\"joao\"\n}\n",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"name": "authorization-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicHJldmlsZWdpZSI6IiQyYSQxMCRZWURkY2VENUY2c29JQ3E3WFBGUTIudXYvNXdZZWtKV2k2LlBKSzlVTFIxOVFyT2I3elFLYSIsImlhdCI6MTY2NTIzNzgwMywiZXhwIjoxNjY1MjQxNDAzfQ.WFMnGO-tsqmoVCirHAIlDC3xJsrbxtl1qVbgfJ_3noU"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "352"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"160-eJk4aExmZJlcmkcHRNZANxZB3eE\""
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 08 Oct 2022 14:03:23 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 352,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"userData\":{\"id\":5,\"name\":\"joao\",\"powerforce\":1},\"situation\":true,\"msg\":\"User logged in success\",\"tokenUser\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicHJldmlsZWdpZSI6IiQyYSQxMCRZWURkY2VENUY2c29JQ3E3WFBGUTIudXYvNXdZZWtKV2k2LlBKSzlVTFIxOVFyT2I3elFLYSIsImlhdCI6MTY2NTIzNzgwMywiZXhwIjoxNjY1MjQxNDAzfQ.WFMnGO-tsqmoVCirHAIlDC3xJsrbxtl1qVbgfJ_3noU\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 106.13300000000001,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Login"
+			},
+			{
+				"startedDateTime": "2022-10-08T14:44:19.977Z",
+				"time": 157.175,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:3000/api/auth/register/",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [
+						{
+							"name": "",
+							"value": ""
+						}
+					],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"name\":\"joao\",\n\t\"userName\":\"joao\",\n\t\"password\":\"joao\",\n\t\"phonenumber\":\"(31)9999-9999\",\n\t\"email\":\"joaoguilheme94@live.com\"\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 400,
+					"statusText": "Bad Request",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"name": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"name": "Content-Length",
+							"value": "59"
+						},
+						{
+							"name": "ETag",
+							"value": "W/\"3b-Qr0ecdC/EHdkpmxFtz0XsXHaSDc\""
+						},
+						{
+							"name": "Date",
+							"value": "Sat, 08 Oct 2022 14:09:33 GMT"
+						},
+						{
+							"name": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"name": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"content": {
+						"size": 59,
+						"mimeType": "application/json; charset=utf-8",
+						"text": "{\"situation\":false,\"msg\":\"This Phonenumber already exists\"}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 157.175,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Register User"
+			}
+		]
+	}
+}
