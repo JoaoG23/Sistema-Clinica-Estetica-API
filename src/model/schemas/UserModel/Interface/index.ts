@@ -2,12 +2,10 @@ import { DataType,Model, Optional } from "sequelize";
 
 export interface UserAttributes {
     id?: number;
-    name?: string;
     userName?: string;
     password?: string;
-    phonenumber?: string;
+    email?:string;
     idPrevilegies?: number;
-    email?: string;
     createdAt?: Date;
     updatedAt?: Date;
   }

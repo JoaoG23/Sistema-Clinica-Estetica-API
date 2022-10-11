@@ -1,14 +1,12 @@
 import {  DataTypes , Model } from "sequelize";
 import { db } from '../../database'
-import { UserAttributes, UserInput } from "./User";
+import { UserAttributes, UserInput } from "./Interface";
 
 class User extends Model<UserAttributes, UserInput> implements UserAttributes {
   public id!: number
-  public name!: string
   public userName!: string
   public password!: string
-  public phonenumber!: string
-  public email!: string
+  public email?: string;
   public idPrevilegies!: number
 
   // timestamps!
@@ -24,14 +22,15 @@ User.init(
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    userName: {
       type: DataTypes.STRING(70),
       allowNull: false,
+      unique: true,
       validate: {
         notEmpty: true,
       },
     },
-    userName: {
+    email: {
       type: DataTypes.STRING(70),
       allowNull: false,
       unique: true,
@@ -45,16 +44,6 @@ User.init(
       validate: {
         notEmpty: true,
       },
-    },
-    phonenumber: {
-      type: DataTypes.STRING(20),
-      allowNull: false,
-      unique: true,
-    },
-    email: {
-      type: DataTypes.STRING(70),
-      allowNull: false,
-      unique: true,
     },
     idPrevilegies: {
       allowNull: false,

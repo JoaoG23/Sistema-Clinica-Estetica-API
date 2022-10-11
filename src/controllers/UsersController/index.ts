@@ -12,20 +12,10 @@ import DeleteDataService from "../services/Delete";
 import EditDataService from "../services/Edit";
 import ListUserLoginByUsername from "../services/specificServices/ListUserLoginByUsername";
 import GenerateToken from "../services/GenerateToken";
-import { PromiseWithChild } from "child_process";
 
 class UsersControlllers {
   public async create(req: Request, res: Response) {
     try {
-      const phonenumberFound = await ListOneDataService.execulte(UserModel, {
-        phonenumber: req.body.phonenumber,
-      });
-
-      if (phonenumberFound) {
-        return res
-          .status(400)
-          .json(new MessageReturns(false, "This Phonenumber already exists"));
-      }
 
       const emailFound = await ListOneDataService.execulte(UserModel, {
         email: req.body.email,
@@ -48,14 +38,12 @@ class UsersControlllers {
       }
 
       const dataNewUser: User = {
-        name: req.body.name,
         userName: req.body.userName,
         password: bcrypt.hashSync(req.body.password),
-        phonenumber: req.body.phonenumber,
         email: req.body.email,
       };
 
-      console.log(await CreateDataService.execulte(UserModel, dataNewUser));
+      await CreateDataService.execulte(UserModel, dataNewUser);
 
       res
         .status(201)
@@ -153,7 +141,7 @@ class UsersControlllers {
 
       const token: any = await GenerateToken.execulte({
         id: userFound.id,
-        previlegie: userFound.password,
+        previlegie: userFound.powerforce,
       });
 
       type ShowUserData = Omit<Previlegie, "password">

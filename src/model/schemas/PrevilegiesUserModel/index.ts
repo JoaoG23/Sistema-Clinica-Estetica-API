@@ -1,8 +1,14 @@
-import { DataTypes } from "sequelize";
-import { db } from "../../config";
+import {  DataTypes , Model } from "sequelize";
+import { db } from '../../database'
+import { PrevilegiesAttributes, PrevilegiesInput } from "./Interface";
 
-const PrevilegiesUsersModel = db.define(
-  "previlegies_users",
+class PrevilegiesUsers extends Model<PrevilegiesAttributes, PrevilegiesInput> implements PrevilegiesAttributes {
+  public id: number
+  public description: string
+  public force: number
+}
+
+PrevilegiesUsers.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -26,8 +32,9 @@ const PrevilegiesUsersModel = db.define(
   {
     freezeTableName: true,
     tableName: "previlegies_users",
+    sequelize:db,
     timestamps: false,
   }
-);
+)
 
-export default PrevilegiesUsersModel;
+export default PrevilegiesUsers;

@@ -1,6 +1,6 @@
 import { QueryTypes } from "sequelize";
 import { db } from "../../../../model/database";
-class ListUserLoginByUsername {
+class ListaTodosDadosAgendamentos {
   public static async execulte(userName: string): Promise<object> {
     try {
       const datas = await db.query(
@@ -22,4 +22,4 @@ class ListUserLoginByUsername {
   }
 }
 
-export default ListUserLoginByUsername;
+export default ListaTodosDadosAgendamentos;
