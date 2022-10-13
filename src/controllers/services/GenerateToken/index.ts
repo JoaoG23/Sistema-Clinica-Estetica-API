@@ -3,9 +3,10 @@ class GenerateToken {
   public static async execulte(dataForSign: any): Promise<any> {
     try {
       const secret: any = process.env.TOKEN_SECRET;
-      const tokenGenerated: any = await jwt.sign(dataForSign, secret, {
-        expiresIn: '1h',
-      });
+      const tokenGenerated: any = await jwt.sign(dataForSign, secret);
+      // const tokenGenerated: any = await jwt.sign(dataForSign, secret, {
+      //   expiresIn: '1h',
+      // });
       return tokenGenerated;
     } catch (error) {
       return error;

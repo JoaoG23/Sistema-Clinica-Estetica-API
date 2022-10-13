@@ -17,6 +17,14 @@ module.exports = {
             description: 'Cliente',
             force: 3
           }
+        ]),
+        queryInterface.bulkInsert('ocupacoes', [
+           { descricao: 'Manicure e Pedicure' },
+           { descricao: 'Gestor' }
+        ]),
+        queryInterface.bulkInsert('tiposservicos', [
+           { nome_servico: 'Manicure' },
+           { nome_servico: 'Pedicure' },
         ])
       ])
     })

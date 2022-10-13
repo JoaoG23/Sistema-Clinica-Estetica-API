@@ -34,8 +34,6 @@ Funcionario.init(
     },
     telefone: {
       type: DataTypes.STRING(20),
-      allowNull: false,
-      unique: true,
     },
     id_ocupacao: {
       allowNull: false,
@@ -50,7 +48,6 @@ Funcionario.init(
       allowNull: false,
       type: DataTypes.INTEGER,
       defaultValue: 1,
-      unique:true,
       references: {
         model: "users",
         key: "id",

@@ -11,32 +11,60 @@ import EditDataService from "../services/Edit";
 
 import Funcionario from "../../model/schemas/FuncionarioModel";
 import Cliente from "../../model/schemas/ClienteModel";
+import User from "../../model/schemas/UserModel";
+import Ocupacoes from "../../model/schemas/OcupacoesModel";
 
 class FuncionariosControlllers {
   public async create(req: Request, res: Response) {
     try {
       
+      const usuarioFound = await ListOneDataService.execulte(User, {
+        id: req.body.id_usuario,
+      });
+      const ocupacoesFound = await ListOneDataService.execulte(Ocupacoes, {
+        id: req.body.id_ocupacao,
+      });
+
       const clienteFound = await ListOneDataService.execulte(Cliente, {
         id_usuario: req.body.id_usuario,
       });
       const funcionarioFound  = await ListOneDataService.execulte(Funcionario, {
         id_usuario: req.body.id_usuario,
       });
+      
+
+      if (!usuarioFound) {
+        return res
+        .status(400)
+        .json(new MessageReturns(false, "Esse Usuario não existe"));
+      }
+
+      if (!ocupacoesFound) {
+        return res
+        .status(400)
+        .json(new MessageReturns(false, "Essa ocupacão não existe"));
+      }
+
+      if (!usuarioFound) {
+        return res
+        .status(400)
+        .json(new MessageReturns(false, "Esse Usuario não existe"));
+      }
 
       if (clienteFound || funcionarioFound) {
         return res
         .status(400)
-        .json(new MessageReturns(false, "Cliente or funcionario already exists with user! You make another"));
+        .json(new MessageReturns(false, "Cliente ou funcionario já existe! Tente outro usuário"));
       }
 
       await CreateDataService.execulte(Funcionario, req.body);
       res
         .status(201)
-        .json(new MessageReturns(false, "Funcionario inserted with success"));
+        .json(new MessageReturns(false, "Funcionario inserido com sucesso"));
     } catch (error) {
       res
         .status(400)
-        .json(new MessageReturns(false, "Error of the inserted Funcionario"));
+        .json(new MessageReturns(false, "Erro ao inserir funcionario"));
       console.error(error);
     }
   }

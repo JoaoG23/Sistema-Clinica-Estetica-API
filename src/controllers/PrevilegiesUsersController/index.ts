@@ -15,7 +15,6 @@ import PrevilegiesUsers from "../../model/schemas/PrevilegiesUserModel";
 class PrevilegieUsersControlllers {
   public async create(req: Request, res: Response) {
     try {
-
       await CreateDataService.execulte(PrevilegiesUsers, req.body);
       res
         .status(201)
@@ -23,7 +22,9 @@ class PrevilegieUsersControlllers {
     } catch (error) {
       res
         .status(400)
-        .json(new MessageReturns(false, "Error of the inserted PrevilegieUsers"));
+        .json(
+          new MessageReturns(false, "Error of the inserted PrevilegieUsers")
+        );
       console.error(error);
     }
   }
@@ -41,9 +42,12 @@ class PrevilegieUsersControlllers {
   public async listOneById(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const previlegieUsersFound = await ListOneDataService.execulte(PrevilegiesUsers, {
-        id: id,
-      });
+      const previlegieUsersFound = await ListOneDataService.execulte(
+        PrevilegiesUsers,
+        {
+          id: id,
+        }
+      );
 
       if (!previlegieUsersFound) {
         return res
@@ -52,7 +56,9 @@ class PrevilegieUsersControlllers {
       }
       res.status(200).json(previlegieUsersFound);
     } catch (error) {
-      res.status(400).json(new MessageReturns(false, "Error to list PrevilegieUserss"));
+      res
+        .status(400)
+        .json(new MessageReturns(false, "Error to list PrevilegieUserss"));
       console.error(error);
     }
   }
@@ -61,9 +67,12 @@ class PrevilegieUsersControlllers {
   public async listAllForIdUser(req: Request, res: Response) {
     try {
       const { idUser } = req.params;
-      const previlegieUsersFound = await ListAllByCriteriaService.execulte(PrevilegiesUsers, {
-        userId: idUser,
-      });
+      const previlegieUsersFound = await ListAllByCriteriaService.execulte(
+        PrevilegiesUsers,
+        {
+          userId: idUser,
+        }
+      );
 
       if (!previlegieUsersFound) {
         return res
@@ -72,7 +81,9 @@ class PrevilegieUsersControlllers {
       }
       res.status(200).json(previlegieUsersFound);
     } catch (error) {
-      res.status(400).json(new MessageReturns(false, "Error to list Previlegie"));
+      res
+        .status(400)
+        .json(new MessageReturns(false, "Error to list Previlegie"));
       console.error(error);
     }
   }
@@ -84,9 +95,12 @@ class PrevilegieUsersControlllers {
         idFound = req.body.id;
       }
 
-      const previlegieUsersFound = await ListOneDataService.execulte(PrevilegiesUsers, {
-        id: idFound,
-      });
+      const previlegieUsersFound = await ListOneDataService.execulte(
+        PrevilegiesUsers,
+        {
+          id: idFound,
+        }
+      );
       if (!previlegieUsersFound) {
         return res
           .status(400)
@@ -114,9 +128,12 @@ class PrevilegieUsersControlllers {
         idFound = req.body.id;
       }
 
-      const previlegieUsersFound = await ListOneDataService.execulte(PrevilegiesUsers, {
-        id: idFound,
-      });
+      const previlegieUsersFound = await ListOneDataService.execulte(
+        PrevilegiesUsers,
+        {
+          id: idFound,
+        }
+      );
 
       if (!previlegieUsersFound) {
         return res
@@ -132,11 +149,12 @@ class PrevilegieUsersControlllers {
         .status(200)
         .json(new MessageReturns(true, "Previlegie updated with success"));
     } catch (error) {
-      res.status(400).json(new MessageReturns(true, "Previlegie updated with success"));
+      res
+        .status(400)
+        .json(new MessageReturns(true, "Previlegie updated with success"));
       console.error(error);
     }
   }
 }
 
 export default new PrevilegieUsersControlllers();
-

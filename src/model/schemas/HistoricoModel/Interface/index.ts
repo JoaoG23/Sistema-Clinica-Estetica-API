@@ -2,8 +2,9 @@ import { Optional } from "sequelize";
 
 export interface HistoricoAttributes {
     id?: number;
-    entrada_horario?:Date;
-    saida_horario?:Date;
+    data?:Date;
+    horario?:string;
+    
     id_cliente?:number;
     cliente_nome?:string;
 
@@ -13,7 +14,6 @@ export interface HistoricoAttributes {
     id_tipo_servico?:number;
     tipo_servico_nome?:string;
     
-    is_marcado?:boolean;
     status_pagamento?:string;
     valor_pago?:number;
     observacoes?:string;

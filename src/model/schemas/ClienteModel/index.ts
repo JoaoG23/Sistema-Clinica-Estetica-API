@@ -35,7 +35,6 @@ Cliente.init(
     telefone: {
       type: DataTypes.STRING(20),
       allowNull: false,
-      unique: true,
     },
     observacoes: {
       type: DataTypes.STRING(100),
@@ -43,7 +42,6 @@ Cliente.init(
     id_usuario: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      defaultValue: 1,
       references: {
         model: "users",
         key: "id",

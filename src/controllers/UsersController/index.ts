@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 import UserModel from "../../model/schemas/UserModel";
 
+import { Previlegie } from '../../types/Previlegie'
 import { User } from "../../types/User";
 // Services
 import MessageReturns from "../services/MessageReturns";
@@ -12,6 +13,9 @@ import DeleteDataService from "../services/Delete";
 import EditDataService from "../services/Edit";
 import ListUserLoginByUsername from "../services/specificServices/ListUserLoginByUsername";
 import GenerateToken from "../services/GenerateToken";
+import Funcionario from "../../model/schemas/FuncionarioModel";
+import Cliente from "../../model/schemas/ClienteModel";
+
 
 class UsersControlllers {
   public async create(req: Request, res: Response) {
@@ -41,10 +45,10 @@ class UsersControlllers {
         userName: req.body.userName,
         password: bcrypt.hashSync(req.body.password),
         email: req.body.email,
+        idPrevilegies: req.body.idPrevilegies
       };
-
+      
       await CreateDataService.execulte(UserModel, dataNewUser);
-
       res
         .status(201)
         .json(new MessageReturns(true, "User inserted with success"));
@@ -107,14 +111,6 @@ class UsersControlllers {
 
   public async login(req: Request, res: Response) {
 
-    interface Previlegie {
-      id?:number,
-      name?:string,
-      password?:string,
-      previlegiesid?:number,
-      powerforce?:number
-    }
-
     try {
       const { userName, password } = req.body;
 
@@ -144,14 +140,35 @@ class UsersControlllers {
         previlegie: userFound.powerforce,
       });
 
+      
+      // Verifica se e funcionario ou cliente
+
+      let dadosImportantes;
+      const isFuncionario = await ListOneDataService.execulte(Funcionario, {
+        id_usuario: userFound.id,
+      })
+      const isCliente = await ListOneDataService.execulte(Cliente, {
+         id_usuario: userFound.id,
+       })
+
+      if (isFuncionario) {
+        dadosImportantes = isFuncionario
+      } else {
+        dadosImportantes = isCliente
+      }
+      
+      console.log('Funcionario ', isFuncionario);
+      console.log('Cliente' ,isCliente);
       type ShowUserData = Omit<Previlegie, "password">
 
       // Dados do Usuario
       const userData:ShowUserData = {
         id:userFound.id,
-        name:userFound.name,
-        powerforce:userFound.powerforce
+        powerforce:userFound.powerforce,
+        datas:dadosImportantes
       } 
+
+
 
       // insert token in code
       res.header("authorization-token", token);

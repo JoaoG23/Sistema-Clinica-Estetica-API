@@ -14,7 +14,6 @@ import Ocupacoes from "../../model/schemas/OcupacoesModel";
 class OcupacoesControlllers {
   public async create(req: Request, res: Response) {
     try {
-
       await CreateDataService.execulte(Ocupacoes, req.body);
       res
         .status(201)
@@ -51,12 +50,12 @@ class OcupacoesControlllers {
       }
       res.status(200).json(ocupacoesFound);
     } catch (error) {
-      res.status(400).json(new MessageReturns(false, "Error to list Ocupacoes"));
+      res
+        .status(400)
+        .json(new MessageReturns(false, "Error to list Ocupacoes"));
       console.error(error);
     }
   }
-
-
 
   public async deleteById(req: Request, res: Response) {
     try {
@@ -72,7 +71,10 @@ class OcupacoesControlllers {
         return res
           .status(400)
           .json(
-            new MessageReturns(false, "Ocupacao not exists for he to be removed")
+            new MessageReturns(
+              false,
+              "Ocupacao not exists for he to be removed"
+            )
           );
       }
 
@@ -113,11 +115,12 @@ class OcupacoesControlllers {
         .status(200)
         .json(new MessageReturns(true, "Ocupacao updated with success"));
     } catch (error) {
-      res.status(400).json(new MessageReturns(true, "Ocupacao updated with success"));
+      res
+        .status(400)
+        .json(new MessageReturns(true, "Ocupacao updated with success"));
       console.error(error);
     }
   }
 }
 
 export default new OcupacoesControlllers();
-

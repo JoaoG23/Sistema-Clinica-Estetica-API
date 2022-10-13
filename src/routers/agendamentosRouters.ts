@@ -10,7 +10,6 @@ routers.delete("/", AgendamentosController.deleteById);
 
 routers.put("/:id", AgendamentosController.updateById);
 routers.put("/", AgendamentosController.updateById);
-routers.get("/user/:idUser", AgendamentosController.listAllForIdUser);
 
 routers.post("/", AgendamentosController.create);
 

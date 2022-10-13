@@ -7,8 +7,8 @@ class Historico
   implements HistoricoAttributes
 {
   public id: number;
-  public entrada_horario?: Date;
-  public saida_horario?: Date;
+  public data?: Date;
+  public horario?: string;
 
   public id_cliente?: number;
   public cliente_nome?: string;
@@ -16,7 +16,6 @@ class Historico
   public id_funcionario?: number;
   public funcionario_nome?: string;
 
-  public is_marcado?: boolean;
   public id_tipo_servico?: number;
   public tipo_servico_nome?: string;
 
@@ -33,15 +32,15 @@ Historico.init(
       allowNull: false,
       primaryKey: true,
     },
-    entrada_horario: {
-      type: DataTypes.DATE,
+    data: {
+      type: DataTypes.DATEONLY,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    saida_horario: {
-      type: DataTypes.DATE,
+    horario: {
+      type: DataTypes.TIME,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -80,18 +79,7 @@ Historico.init(
         notEmpty: true,
       },
     },
-    is_marcado: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
-    },
-    status_pagamento: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      defaultValue: "pago",
-    },
     valor_pago: {
-      allowNull: false,
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
     },

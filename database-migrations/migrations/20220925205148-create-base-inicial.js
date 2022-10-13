@@ -94,7 +94,6 @@ module.exports = {
             telefone: {
               type: Sequelize.DataTypes.STRING(20),
               allowNull: false,
-              unique: true,
             },
             observacoes: {
               type: Sequelize.DataTypes.STRING(100),
@@ -132,7 +131,6 @@ module.exports = {
             telefone: {
               type: Sequelize.DataTypes.STRING(20),
               allowNull: false,
-              unique: true,
             },
             id_ocupacao: {
               allowNull: false,
@@ -180,59 +178,43 @@ module.exports = {
               allowNull: false,
               primaryKey: true,
             },
-            entrada_horario: {
-              type: Sequelize.DataTypes.DATE,
+            data: {
+              type: Sequelize.DataTypes.DATEONLY,
               allowNull: false,
               validate: {
                 notEmpty: true,
               },
             },
-            saida_horario: {
-              type: Sequelize.DataTypes.DATE,
+            horario: {
+              type: Sequelize.DataTypes.TIME,
               allowNull: false,
               validate: {
                 notEmpty: true,
               },
             },
+
             id_cliente: {
-              allowNull: false,
               type: Sequelize.DataTypes.INTEGER,
-              defaultValue: 1,
               references: {
                 model: "clientes",
                 key: "id",
               },
             },
             id_funcionario: {
-              allowNull: false,
               type: Sequelize.DataTypes.INTEGER,
-              defaultValue: 1,
               references: {
                 model: "funcionarios",
                 key: "id",
               },
             },
             id_tipo_servico: {
-              allowNull: false,
               type: Sequelize.DataTypes.INTEGER,
-              defaultValue: 1,
               references: {
                 model: "tiposservicos",
                 key: "id",
               },
             },
-            is_marcado: {
-              allowNull: false,
-              type: Sequelize.DataTypes.BOOLEAN,
-              defaultValue: true,
-            },
-            status_pagamento: {
-              allowNull: false,
-              type: Sequelize.DataTypes.STRING,
-              defaultValue: '',
-            },
             valor_pago: {
-              allowNull: false,
               type: Sequelize.DataTypes.DECIMAL(10, 2),
               defaultValue: 0,
             },
@@ -268,15 +250,15 @@ module.exports = {
             allowNull: false,
             primaryKey: true,
           },
-          entrada_horario: {
-            type: Sequelize.DataTypes.DATE,
+          data: {
+            type: Sequelize.DataTypes.DATEONLY,
             allowNull: false,
             validate: {
               notEmpty: true,
             },
           },
-          saida_horario: {
-            type: Sequelize.DataTypes.DATE,
+          horario: {
+            type: Sequelize.DataTypes.TIME,
             allowNull: false,
             validate: {
               notEmpty: true,
@@ -304,26 +286,13 @@ module.exports = {
             },
           },
           id_tipo_servico: {
-            allowNull: false,
             type: Sequelize.DataTypes.INTEGER,
-            defaultValue: 1
           },
           tipo_servico_nome: {
             type: Sequelize.DataTypes.STRING,
-            allowNull: false,
             validate: {
               notEmpty: true,
             },
-          },
-          is_marcado: {
-            allowNull: false,
-            type: Sequelize.DataTypes.BOOLEAN,
-            defaultValue: true,
-          },
-          status_pagamento: {
-            allowNull: false,
-            type: Sequelize.DataTypes.STRING,
-            defaultValue: "pago",
           },
           valor_pago: {
             allowNull: false,
