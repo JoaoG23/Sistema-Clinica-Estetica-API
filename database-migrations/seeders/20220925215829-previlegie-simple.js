@@ -18,14 +18,14 @@ module.exports = {
             force: 3
           }
         ]),
-        queryInterface.bulkInsert('ocupacoes', [
-           { descricao: 'Manicure e Pedicure' },
-           { descricao: 'Gestor' }
-        ]),
-        queryInterface.bulkInsert('tiposservicos', [
-           { nome_servico: 'Manicure' },
-           { nome_servico: 'Pedicure' },
-        ])
+        // queryInterface.bulkInsert('ocupacoes', [
+        //    { descricao: 'Manicure e Pedicure' },
+        //    { descricao: 'Gestor' }
+        // ]),
+        // queryInterface.bulkInsert('tiposservicos', [
+        //    { nome_servico: 'Manicure' },
+        //    { nome_servico: 'Pedicure' },
+        // ])
       ])
     })
   },
@@ -33,6 +33,12 @@ module.exports = {
     return queryInterface.sequelize.transaction(() => {
       return Promise.all([
         queryInterface.bulkDelete('previlegies_users', null, {}),
+        queryInterface.bulkDelete('users', null, {}),
+        queryInterface.bulkDelete('agendamentos', null, {}),
+        queryInterface.bulkDelete('clientes', null, {}),
+        queryInterface.bulkDelete('funcionarios', null, {}),
+        queryInterface.bulkDelete('ocupacoes', null, {}),
+        queryInterface.bulkDelete('tiposservicos', null, {}),
       ])
     });
   }

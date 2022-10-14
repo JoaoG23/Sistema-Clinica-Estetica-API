@@ -1,11 +1,10 @@
 import { Router } from "express";
 const routers = Router();
 
-import usersRouters from "../userRouters";
+import userComumRouters from '../userComumRouters';
 import clientesRouters from "../clientesRouters";
 
-
-routers.use("/users", usersRouters);
+routers.use("/user", userComumRouters);
 routers.use("/clientes", clientesRouters);
 
 export default routers;

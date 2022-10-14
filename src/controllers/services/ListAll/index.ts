@@ -7,6 +7,7 @@ class ListAllService {
               ? allDatas
               : null
         } catch (error) {
+            console.error(error)
             return error;
         }
     }

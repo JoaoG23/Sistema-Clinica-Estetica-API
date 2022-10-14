@@ -30,7 +30,7 @@
 
 <img width="300px" src="https://media.tenor.com/lpkeOfuQaNsAAAAi/hair-flip-shiny-hair.gif">
 
-**API em desenvolvimento ainda 🚨** ,sistema Zau-estetica é um voltado para o gestão de agendamento de clientes, o nome ZAU e homenagem a minha mãe. 
+Sistema Zau-estetica é um voltado para o gestão de agendamento de clientes, o nome ZAU e homenagem a minha mãe. 
 
 <h2 id='desenvolvimento'><b>2- Criação e Tecnologias 👩🏽‍🌾😰 </b></h2>
 <img width="450px" src="https://media.tenor.com/40A4taEpX78AAAAM/tom-and-jerry-preparing.gif">
@@ -40,9 +40,21 @@
 **Funcionalidade**
 
 - [x]  Rota de Usuário e Autenticação
+- [x]  Rota de Tipos de Usuario
+- [X]  Rota de Agendamento
+- [X]  Rota de Clientes
+- [X]  Rota de Funcionarios
+- [X]  Rota de Ocupacoes
+- [X]  Rota de Tipo de Serviços
+
+
+**Testando**
+- [x]  Rota de Usuário e Autenticação
+- [ ]  Rota de Tipos de Usuario
 - [ ]  Rota de Agendamento
 - [ ]  Rota de Clientes
 - [ ]  Rota de Funcionarios
+- [ ]  Rota de Ocupacoes
 - [ ]  Rota de Tipo de Serviços
 
 ### 👥 Principais Tecnologia usadas até o momento
@@ -162,7 +174,7 @@ Basicamente tem 2 Rotas principais ainda!
 
 De uma olhada na documentação para melhor entendimento.
 
-<!-- <h3>👉🏽<a href='https://wayoftheweights-docs-api.netlify.app'>Clique aqui para acessa a documentacão</a></h3> -->
+<h3>👉🏽<a href='https://wayoftheweights-docs-api.netlify.app'>Clique aqui para acessa a documentacão</a></h3>
 
 <h2 id='consideraçoesfinais'><b>5 -🥺😭 Considerações finais</b></h2>
 

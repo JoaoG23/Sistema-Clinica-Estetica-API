@@ -185,7 +185,6 @@ class ClientesControlllers {
         id: idFound,
       });
 
-      console.log(data);
       res
         .status(200)
         .json(new MessageReturns(true, "Horario desmarcado com sucesso"));

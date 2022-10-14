@@ -3,9 +3,10 @@ import AgendamentosController from "../controllers/AgendamentosController";
 import ClientesController from '../controllers/ClientesController'
 const routers = Router();
 
-routers.get("/", ClientesController.listAll);
+routers.get("/buscaragendamentos", AgendamentosController.listAllByIdClienteToday);
 routers.get("/:id", ClientesController.listOneById);
 routers.get("/agendamentos/:id", AgendamentosController.listAllByIdCliente);
+routers.get("/", ClientesController.listAll);
 
 routers.delete("/:id", ClientesController.deleteById);
 routers.delete("/", ClientesController.deleteById);

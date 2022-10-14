@@ -9,6 +9,7 @@ class DeleteDataService {
               });
             return deleted;
         } catch (error) {
+            console.error(error)
             return error;
         }
     }

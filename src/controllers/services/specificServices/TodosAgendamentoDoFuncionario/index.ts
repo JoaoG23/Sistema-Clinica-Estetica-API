@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { db } from "../../../../model/database";
-class AgendamentoDoCliente {
-  public static async execulte(idCliente: string): Promise<object> {
+class TodosAgendamentoDoFuncionario {
+  public static async execulte(idFuncionario: string): Promise<object> {
     try {
       const datas = await db.query(
         `SELECT ag.id,
@@ -18,9 +18,9 @@ class AgendamentoDoCliente {
         FROM agendamentos ag
         LEFT JOIN clientes cl ON ag."id_cliente" = cl.id
         LEFT JOIN funcionarios fun ON ag."id_funcionario" = fun.id
-        JOIN tiposservicos ser ON ag."id_tipo_servico" = ser.id WHERE ag.id_cliente = ?`,
+        LEFT JOIN tiposservicos ser ON ag."id_tipo_servico" = ser.id WHERE ag.id_funcionario = ?`,
         {
-          replacements: [idCliente],
+          replacements: [idFuncionario],
           type: QueryTypes.SELECT,
         }
       );
@@ -31,4 +31,4 @@ class AgendamentoDoCliente {
   }
 }
 
-export default AgendamentoDoCliente;
+export default TodosAgendamentoDoFuncionario;

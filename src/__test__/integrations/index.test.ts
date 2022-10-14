@@ -21,7 +21,7 @@ import {
 // 2 - Quando eu fazer algo! When send any
 // 3 - O que deveria fazer? should be
 describe("Create Users", () => {
-  describe("When send datas as username, name, password,phonenumber, email ", () => {
+  describe("Quando eu enviar os dados do usuario angela ", () => {
     afterEach(() => {
       TruncateAll.execulte(UserModel);
     });
@@ -29,239 +29,303 @@ describe("Create Users", () => {
       TruncateAll.execulte(UserModel);
     });
 
-    it("Should to create one status 201", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+    it("Deveria ser capaz de criar um usuario na base de dados e rota retorna um status code 201", async () => {
+      const token = await GenerateToken.execulte({ id: 1, previlegie: 1 });
       const res = await request(app)
-        .post("/api/users/")
+        .post("/api/auth/register/")
         .set("authorization-token", token)
         .send(angela);
 
       expect(res.statusCode).toEqual(201);
       expect(res.body).toHaveProperty("msg");
-      expect(res.body.msg).toBe("User inserted with success");
+      console.log(res.body);
     });
   });
 });
 
-describe("Delete Users", () => {
-  describe("When send METHOD = DELETE in the routers api/users/", () => {
+describe("Lista um usuario", () => {
+  describe("Quando eu enviar os dados do usuario angela ", () => {
     afterEach(() => {
       TruncateAll.execulte(UserModel);
     });
+    it("Deveria ser capaz criar um usuario, em seguida ver os dados rece-usuário criado e retorna status 200 ", async () => {
+      const token = await GenerateToken.execulte({ id: 1, previlegie: 1 });
 
-    it("Should to find one user and to remove User", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-      const createUser = await request(app)
-        .post("/api/users")
+      const criar = await request(app)
+        .post("/api/auth/register/")
         .set("authorization-token", token)
         .send(angela);
 
-      const showUserForDelete = await request(app)
-        .get("/api/users/1")
-        .set("authorization-token", token);
-      const deleted = await request(app)
-        .delete("/api/users/1")
+      const visualizar = await request(app)
+        .get("/api/admin/users/")
         .set("authorization-token", token);
 
-      expect(deleted.statusCode).toEqual(200);
-      expect(deleted.body).toHaveProperty("msg");
-      expect(deleted.body.msg).toBe("User deleted with success");
+      expect(visualizar.statusCode).toEqual(200);
+      console.log(visualizar.body);
+
+      expect(visualizar.body).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: 1,
+            email: "angela@angela.com", 
+            userName: 'angela',
+            idPrevilegies: 1,
+          }),
+        ])
+      );
     });
   });
-});
-
-describe("List Users", () => {
-  describe("When send GET in the routers api/users/", () => {
+  describe("Quando eu enviar os dados do usuario angela ", () => {
     afterEach(() => {
       TruncateAll.execulte(UserModel);
     });
+    it("Deveria ser capaz criar um usuario, em seguida ver os dados rece-usuário criado e retorna status 200 ", async () => {
+      const token = await GenerateToken.execulte({ id: 1, previlegie: 1 });
 
-    it("Should to find all users registed and show all", async () => {
-      // Create on new list of users
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-
-      const first = await request(app)
-        .post("/api/users")
+      const criar = await request(app)
+        .post("/api/auth/register/")
         .set("authorization-token", token)
         .send(angela);
 
-      const second = await request(app)
-        .post("/api/users")
-        .set("authorization-token", token)
-        .send(gabiroba);
-
-      const third = await request(app)
-        .post("/api/users")
-        .set("authorization-token", token)
-        .send(zelanbida);
-
-      const res = await request(app)
-        .get("/api/users")
+      const visualizar = await request(app)
+        .get("/api/admin/users/")
         .set("authorization-token", token);
 
-      expect(res.statusCode).toEqual(200);
-    });
-  });
+      expect(visualizar.statusCode).toEqual(200);
+      console.log(visualizar.body);
 
-  describe("When send GET in the routers api/users/1", () => {
-    afterEach(() => {
-      TruncateAll.execulte(UserModel);
-    });
-
-    it("Should to find one user registed and to show your datas", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-      // Create on new list of users
-      const first = await request(app)
-        .post("/api/users")
-        .set("authorization-token", token)
-        .send(gabiroba);
-
-      const res = await request(app)
-        .get("/api/users/1")
-        .set("authorization-token", token);
-
-      expect(res.statusCode).toEqual(200);
+      expect(visualizar.body).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: 1,
+            email: "angela@angela.com", 
+            userName: 'angela',
+            idPrevilegies: 1,
+          }),
+        ])
+      );
     });
   });
 });
 
-describe("Update Users", () => {
-  describe("When send METHOD = PUT in the routers api/users/", () => {
-    afterEach(() => {
-      TruncateAll.execulte(UserModel);
-    });
+// describe("Delete Users", () => {
+//   describe("When send METHOD = DELETE in the routers api/users/", () => {
+//     afterEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
 
-    it("Should to find one user and to update datas user angela to gabiroba, for params request", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-      const createUser = await request(app)
-        .post("/api/users")
-        .set("authorization-token", token)
-        .send(angela);
+//     it("Should to find one user and to remove User", async () => {
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+//       const createUser = await request(app)
+//         .post("/api/users")
+//         .set("authorization-token", token)
+//         .send(angela);
 
-      const showUserForEdit = await request(app).get("/api/users/1");
+//       const showUserForDelete = await request(app)
+//         .get("/api/users/1")
+//         .set("authorization-token", token);
+//       const deleted = await request(app)
+//         .delete("/api/users/1")
+//         .set("authorization-token", token);
 
-      const updated = await request(app)
-        .put("/api/users/1")
-        .set("authorization-token", token)
-        .send(gabiroba);
+//       expect(deleted.statusCode).toEqual(200);
+//       expect(deleted.body).toHaveProperty("msg");
+//       expect(deleted.body.msg).toBe("User deleted with success");
+//     });
+//   });
+// });
 
-      expect(updated.statusCode).toEqual(200);
-      expect(updated.body).toHaveProperty("msg");
-      expect(updated.body.msg).toBe("User updated with success");
-    });
-  });
+// describe("List Users", () => {
+//   describe("When send GET in the routers api/users/", () => {
+//     afterEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
 
-  describe("When send METHOD = PUT in the routers api/users/", () => {
-    afterEach(() => {
-      TruncateAll.execulte(UserModel);
-    });
+//     it("Should to find all users registed and show all", async () => {
+//       // Create on new list of users
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
 
-    it("Should to find one user and to update datas user gabiroba to angela for body request", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-      const createUser = await request(app)
-        .post("/api/users")
-        .set("authorization-token", token)
-        .send(gabiroba);
+//       const first = await request(app)
+//         .post("/api/users")
+//         .set("authorization-token", token)
+//         .send(angela);
 
-      const showUserForEdit = await request(app).get("/api/users");
+//       const second = await request(app)
+//         .post("/api/users")
+//         .set("authorization-token", token)
+//         .send(gabiroba);
 
-      const updated = await request(app)
-        .put("/api/users")
-        .set("authorization-token", token)
-        .send(angelaWithId);
+//       const third = await request(app)
+//         .post("/api/users")
+//         .set("authorization-token", token)
+//         .send(zelanbida);
 
-      expect(updated.statusCode).toEqual(200);
-      expect(updated.body).toHaveProperty("msg");
-      expect(updated.body.msg).toBe("User updated with success");
-    });
-  });
+//       const res = await request(app)
+//         .get("/api/users")
+//         .set("authorization-token", token);
 
-  describe("When send METHOD = PUT in the routers api/users/", () => {
-    afterEach(() => {
-      TruncateAll.execulte(UserModel);
-    });
+//       expect(res.statusCode).toEqual(200);
+//     });
+//   });
 
-    it("Should execpetion throw error for try to one user angela that not exists", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-      const updated = await request(app)
-        .put("/api/users/1")
-        .set("authorization-token", token)
-        .send(angela);
+//   describe("When send GET in the routers api/users/1", () => {
+//     afterEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
 
-      expect(updated.statusCode).toEqual(400);
-      expect(updated.body).toHaveProperty("msg");
-      expect(updated.body.msg).toBe("User not exists for updated");
-    });
-  });
-});
+//     it("Should to find one user registed and to show your datas", async () => {
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+//       // Create on new list of users
+//       const first = await request(app)
+//         .post("/api/users")
+//         .set("authorization-token", token)
+//         .send(gabiroba);
 
-describe("Login User", () => {
-  describe("When the user created to do login ", () => {
-    afterEach(() => {
-      TruncateAll.execulte(UserModel);
-    });
+//       const res = await request(app)
+//         .get("/api/users/1")
+//         .set("authorization-token", token);
 
-    it("Should get status 200 and show all data of user angela join userToken", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-      const registerAngela = await request(app)
-        .post("/api/auth/register")
-        .set("authorization-token", token)
-        .send(angela);
+//       expect(res.statusCode).toEqual(200);
+//     });
+//   });
+// });
 
-      const loginAngela = await request(app)
-        .post("/api/auth/login")
-        .set("authorization-token", token)
-        .send(angelaLogin);
+// describe("Update Users", () => {
+//   describe("When send METHOD = PUT in the routers api/users/", () => {
+//     afterEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
 
-      expect(loginAngela.statusCode).toEqual(200);
-      expect(loginAngela.headers);
-      expect(loginAngela.body).toHaveProperty("msg");
-      expect(loginAngela.body.tokenUser).not.toBeNull();
-      expect(loginAngela.body.msg).toBe("User logged in success");
-    });
-  });
-  describe("When user not created to do login ", () => {
-    beforeEach(() => {
-      TruncateAll.execulte(UserModel);
-    });
+//     it("Should to find one user and to update datas user angela to gabiroba, for params request", async () => {
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+//       const createUser = await request(app)
+//         .post("/api/users")
+//         .set("authorization-token", token)
+//         .send(angela);
 
-    it("Should get status 400 don't to do login user not exists", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-      const loginAngela = await request(app)
-        .post("/api/auth/login")
-        .set("authorization-token", token)
-        .send(angelaLogin);
+//       const showUserForEdit = await request(app).get("/api/users/1");
 
-      expect(loginAngela.statusCode).toEqual(404);
-      expect(loginAngela.headers);
-      console.log(loginAngela.body);
-      expect(loginAngela.body).toHaveProperty("msg");
-      // expect(loginAngela.body.msg).toBe("Password or user incorrect");
-    });
-  });
-  describe("When the user change your password  ", () => {
-    afterEach(() => {
-      TruncateAll.execulte(UserModel);
-    });
+//       const updated = await request(app)
+//         .put("/api/users/1")
+//         .set("authorization-token", token)
+//         .send(gabiroba);
 
-    it("Should user to able in the change your password", async () => {
-      const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+//       expect(updated.statusCode).toEqual(200);
+//       expect(updated.body).toHaveProperty("msg");
+//       expect(updated.body.msg).toBe("User updated with success");
+//     });
+//   });
 
-      const registerAngela = await request(app)
-        .post("/api/auth/register")
-        .set("authorization-token", token)
-        .send(angela);
+//   describe("When send METHOD = PUT in the routers api/users/", () => {
+//     afterEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
 
-      const changedPassword = await request(app)
-        .put("/api/auth/forgetpassword")
-        .set("authorization-token", token)
-        .send(emailAngelaAndNewPassword);
+//     it("Should to find one user and to update datas user gabiroba to angela for body request", async () => {
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+//       const createUser = await request(app)
+//         .post("/api/users")
+//         .set("authorization-token", token)
+//         .send(gabiroba);
 
-      expect(changedPassword.statusCode).toEqual(200);
-      expect(changedPassword.headers);
-      expect(changedPassword.body).toHaveProperty("msg");
-      // expect(changedPassword.body.msg).toBe("Password or user incorrect");
-    });
-  });
-});
+//       const showUserForEdit = await request(app).get("/api/users");
 
+//       const updated = await request(app)
+//         .put("/api/users")
+//         .set("authorization-token", token)
+//         .send(angelaWithId);
+
+//       expect(updated.statusCode).toEqual(200);
+//       expect(updated.body).toHaveProperty("msg");
+//       expect(updated.body.msg).toBe("User updated with success");
+//     });
+//   });
+
+//   describe("When send METHOD = PUT in the routers api/users/", () => {
+//     afterEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
+
+//     it("Should execpetion throw error for try to one user angela that not exists", async () => {
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+//       const updated = await request(app)
+//         .put("/api/users/1")
+//         .set("authorization-token", token)
+//         .send(angela);
+
+//       expect(updated.statusCode).toEqual(400);
+//       expect(updated.body).toHaveProperty("msg");
+//       expect(updated.body.msg).toBe("User not exists for updated");
+//     });
+//   });
+// });
+
+// describe("Login User", () => {
+//   describe("When the user created to do login ", () => {
+//     afterEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
+
+//     it("Should get status 200 and show all data of user angela join userToken", async () => {
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+//       const registerAngela = await request(app)
+//         .post("/api/auth/register")
+//         .set("authorization-token", token)
+//         .send(angela);
+
+//       const loginAngela = await request(app)
+//         .post("/api/auth/login")
+//         .set("authorization-token", token)
+//         .send(angelaLogin);
+
+//       expect(loginAngela.statusCode).toEqual(200);
+//       expect(loginAngela.headers);
+//       expect(loginAngela.body).toHaveProperty("msg");
+//       expect(loginAngela.body.tokenUser).not.toBeNull();
+//       expect(loginAngela.body.msg).toBe("User logged in success");
+//     });
+//   });
+//   describe("When user not created to do login ", () => {
+//     beforeEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
+
+//     it("Should get status 400 don't to do login user not exists", async () => {
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+//       const loginAngela = await request(app)
+//         .post("/api/auth/login")
+//         .set("authorization-token", token)
+//         .send(angelaLogin);
+
+//       expect(loginAngela.statusCode).toEqual(404);
+//       expect(loginAngela.headers);
+//       console.log(loginAngela.body);
+//       expect(loginAngela.body).toHaveProperty("msg");
+//       // expect(loginAngela.body.msg).toBe("Password or user incorrect");
+//     });
+//   });
+//   describe("When the user change your password  ", () => {
+//     afterEach(() => {
+//       TruncateAll.execulte(UserModel);
+//     });
+
+//     it("Should user to able in the change your password", async () => {
+//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+
+//       const registerAngela = await request(app)
+//         .post("/api/auth/register")
+//         .set("authorization-token", token)
+//         .send(angela);
+
+//       const changedPassword = await request(app)
+//         .put("/api/auth/forgetpassword")
+//         .set("authorization-token", token)
+//         .send(emailAngelaAndNewPassword);
+
+//       expect(changedPassword.statusCode).toEqual(200);
+//       expect(changedPassword.headers);
+//       expect(changedPassword.body).toHaveProperty("msg");
+//       // expect(changedPassword.body.msg).toBe("Password or user incorrect");
+//     });
+//   });
+// });

@@ -11,7 +11,10 @@ import EditDataService from "../services/Edit";
 import ListAllByCriteriaService from "../services/ListAllByCriteria";
 import Agendamentos from "../../model/schemas/AgendamentosModel";
 import Funcionario from "../../model/schemas/FuncionarioModel";
-import AgendamentoDoCliente from "../services/specificServices/AgendamentoDoCliente";
+import TodosAgendamentoDoCliente from "../services/specificServices/TodosAgendamentoDoCliente";
+import TodosAgendamentoDoFuncionario from "../services/specificServices/TodosAgendamentoDoFuncionario";
+import AgendamentoDoClienteHoje from "../services/specificServices/AgendamentoDoClienteHoje";
+import AgendamentoDoFuncionarioHoje from "../services/specificServices/AgendamentoDoFuncionarioHoje";
 
 class AgendamentosControlllers {
   public async create(req: Request, res: Response) {
@@ -132,7 +135,7 @@ class AgendamentosControlllers {
       if (!agendamentosFound) {
         return res
           .status(400)
-          .json(new MessageReturns(false, "Agendamento not exists"));
+          .json(new MessageReturns(false, "Agendamento nao existe"));
       }
       res.status(200).json(agendamentosFound);
     } catch (error) {
@@ -146,8 +149,48 @@ class AgendamentosControlllers {
   public async listAllByIdCliente(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const agendamentosFound = await AgendamentoDoCliente.execulte(id)
+      const agendamentosFound = await TodosAgendamentoDoCliente.execulte(id)
       
+      if (!agendamentosFound) {
+        return res
+          .status(400)
+          .json(new MessageReturns(false, "Agendamento nao existe"));
+      }
+      res.status(200).json(agendamentosFound);
+    } catch (error) {
+      res
+        .status(400)
+        .json(new MessageReturns(false, "Error to list Agendamento"));
+      console.error(error);
+    }
+  }
+
+  public async listAllByIdClienteToday(req: Request, res: Response) {
+    try {
+      const { id, data } = req.query;
+      
+      const agendamentosFound = await AgendamentoDoClienteHoje.execulte(id, data)
+      
+      if (!agendamentosFound) {
+        return res
+          .status(400)
+          .json(new MessageReturns(false, "Agendamento nao existe"));
+      }
+      res.status(200).json(agendamentosFound);
+    } catch (error) {
+      res
+        .status(400)
+        .json(new MessageReturns(false, "Error to list Agendamento"));
+      console.error(error);
+    }
+  }
+
+  public async listAllByIdFuncionario(req: Request, res: Response) {
+
+    try {
+      const { id } = req.params;
+      const agendamentosFound = await TodosAgendamentoDoFuncionario.execulte(id)
+
       if (!agendamentosFound) {
         return res
           .status(400)
@@ -162,15 +205,16 @@ class AgendamentosControlllers {
     }
   }
 
-  public async listAllByIdFuncionario(req: Request, res: Response) {
+  public async listAllByIdFuncionarioToday(req: Request, res: Response) {
     try {
-      const { id } = req.params;
-      const agendamentosFound = await AgendamentoDoCliente.execulte(id)
+      const { id, data } = req.query;
+      
+      const agendamentosFound = await AgendamentoDoFuncionarioHoje.execulte(id, data)
 
       if (!agendamentosFound) {
         return res
           .status(400)
-          .json(new MessageReturns(false, "Agendamento not exists"));
+          .json(new MessageReturns(false, "Agendamento nao existe"));
       }
       res.status(200).json(agendamentosFound);
     } catch (error) {

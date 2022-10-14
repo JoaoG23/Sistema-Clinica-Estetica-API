@@ -10,7 +10,6 @@ routers.delete("/", PrevilegiesUserController.deleteById);
 
 routers.put("/:id", PrevilegiesUserController.updateById);
 routers.put("/", PrevilegiesUserController.updateById);
-routers.get("/user/:idUser", PrevilegiesUserController.listAllForIdUser);
 
 routers.post("/", PrevilegiesUserController.create);
 

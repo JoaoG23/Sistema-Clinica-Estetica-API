@@ -6,6 +6,7 @@ class ListOneDataService {
             });
             return findedOne;
         } catch (error) {
+            console.error(error)
             return error;
         }
     }

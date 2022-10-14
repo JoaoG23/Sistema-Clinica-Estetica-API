@@ -63,30 +63,6 @@ class PrevilegieUsersControlllers {
     }
   }
 
-  // Depois excluir
-  public async listAllForIdUser(req: Request, res: Response) {
-    try {
-      const { idUser } = req.params;
-      const previlegieUsersFound = await ListAllByCriteriaService.execulte(
-        PrevilegiesUsers,
-        {
-          userId: idUser,
-        }
-      );
-
-      if (!previlegieUsersFound) {
-        return res
-          .status(400)
-          .json(new MessageReturns(false, "Previlegie not exists"));
-      }
-      res.status(200).json(previlegieUsersFound);
-    } catch (error) {
-      res
-        .status(400)
-        .json(new MessageReturns(false, "Error to list Previlegie"));
-      console.error(error);
-    }
-  }
 
   public async deleteById(req: Request, res: Response) {
     try {

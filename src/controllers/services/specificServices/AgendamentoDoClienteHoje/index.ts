@@ -1,7 +1,15 @@
 import { QueryTypes } from "sequelize";
 import { db } from "../../../../model/database";
-class AgendamentoDoFuncionario {
-  public static async execulte(idFuncionario: string): Promise<object> {
+class AgendamentoDoClienteHoje {
+  public static async execulte(idCliente: string, data:string): Promise<object> {
+
+    let agora = new Date();
+    let dataAtual = agora.toLocaleDateString()
+
+    if (data === '') {
+      data = dataAtual;
+    }
+
     try {
       const datas = await db.query(
         `SELECT ag.id,
@@ -18,17 +26,19 @@ class AgendamentoDoFuncionario {
         FROM agendamentos ag
         LEFT JOIN clientes cl ON ag."id_cliente" = cl.id
         LEFT JOIN funcionarios fun ON ag."id_funcionario" = fun.id
-        JOIN tiposservicos ser ON ag."id_tipo_servico" = ser.id WHERE ag.id_funcionario = ?`,
+        LEFT JOIN tiposservicos ser ON ag."id_tipo_servico" = ser.id WHERE ag.id_cliente = ?
+        AND ag.data = ? `,
         {
-          replacements: [idFuncionario],
+          replacements: [idCliente , data],
           type: QueryTypes.SELECT,
         }
       );
       return datas.length > 0 ? datas : null;
     } catch (error) {
+      console.error(error);
       return error;
     }
   }
 }
 
-export default AgendamentoDoFuncionario;
+export default AgendamentoDoClienteHoje;

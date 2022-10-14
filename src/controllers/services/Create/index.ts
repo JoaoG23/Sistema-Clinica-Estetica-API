@@ -7,6 +7,7 @@ class CreateDataService {
             await Model.create(dataCreate);
             return dataCreate;
         } catch (error) {
+            console.error(error)
             return error;
         }
     }

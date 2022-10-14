@@ -1,9 +1,9 @@
 export const angela = {
-  name: "Angela Ramos",
-  userName: "angela",
-  password: "angela",
-  phonenumber:'(31) 99999-000',
-  email:'angela@email.com'
+    userName:"angela",
+    password:"angela",
+    email:"angela@angela.com",
+    idPrevilegies: 1
+  
 };
 export const angelaLogin = {
   userName: "angela",

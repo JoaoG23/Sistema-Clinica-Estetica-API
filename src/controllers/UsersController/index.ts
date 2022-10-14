@@ -268,6 +268,7 @@ class UsersControlllers {
         email: email,
       });
 
+      console.log(userFound);
       if (!userFound) {
         return res
           .status(400)
