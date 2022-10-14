@@ -120,6 +120,13 @@ Exemplo preenchido .env:
 
 Se ele der algum erro, digite o comando acima novamente.
 
+8. Em seguida digite para criar os previlegios do usuario **tabela previlegie_users** no banco de dados.
+
+      npx sequelize-cli db:seed:all
+
+
+
+
 <h2><b>SISTEMA</b></h2>
 
 
@@ -166,15 +173,29 @@ Teste, **_Insomnia ou postman_** de sua preferencia.
 
 Cada usuário usuario pode ser logar 
 
-Basicamente tem 2 Rotas principais ainda!
+Basicamente tem 8 Rotas principais !
 
-1. /session = Controlas as sessões de login do usuário.
-2. /users = manipula os dados do usuários
+1. Rota de Usuário e Autenticação = Onde o usuário faz login e ser registrar
+1. Rota de Tipos de Usuario = Tipo determina quais rotas o usuario pode acessar 
+1. Rota de Clientes = Apos cadastrar o usuario este pode ser atribuido ou um cliente ou um funcionario nunca o mesmo
+1. Rota de Funcionarios = Apos cadastrar o usuario este pode ser atribuido ou um cliente ou um funcionario nunca o mesmo
+1. Rota de Ocupacoes = Cadastrado algumas ocupacoes dos funcionario do centro estetico
+1. Rota de Agendamento = Quando um funcionario abre a sua agenda o cliente podera escolher um horario, 
+1. Rota de Tipo de Serviços = Apos o cliente marcar um horario poderá se atribuido um servico.
 
 
-De uma olhada na documentação para melhor entendimento.
+O sistema de autenticacão foi feito nas rotas da api. 
+Controle eles seus niveis de force, contido na tabela do previlegie_users do seu banco de dados 
 
-<h3>👉🏽<a href='https://wayoftheweights-docs-api.netlify.app'>Clique aqui para acessa a documentacão</a></h3>
+Haverá 3 Tipos de Usuário 
+
+1. Cliente : O mais fraquinho : poderá controlar somente a rota de /users/ e /clientes e seus dados
+1. Funcionario : controlar a rota /operador/ poderá somente controlar as rotas de operador/ agendamento, /ocupacoes/, /tiposervicos/. Ele marca os horario controla os agendamentos, serviços prestados em muito mais.
+1. Administrador : Com acesso a rota admin poderá controlar todas as rotas do sistema ele detêm o poder máximo da aplicacão "Tipo um Usuário DEUS"
+
+
+
+<!-- <h3>👉🏽<a href='https://wayoftheweights-docs-api.netlify.app'>Clique aqui para acessa a documentacão</a></h3> -->
 
 <h2 id='consideraçoesfinais'><b>5 -🥺😭 Considerações finais</b></h2>
 
