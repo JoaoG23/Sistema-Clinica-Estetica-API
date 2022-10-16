@@ -9,14 +9,7 @@ import TruncateAll from "../../controllers/services/Truncate";
 import GenerateToken from "../../controllers/services/GenerateToken";
 
 // Seeds
-import {
-  angela,
-  angelaLogin,
-  angelaWithId,
-  emailAngelaAndNewPassword,
-  gabiroba,
-  zelanbida,
-} from "./seedsForTests/userExample";
+import { angela, angelaLogin } from "./seedsForTests/userExample";
 // 1- Quem estou testando
 // 2 - Quando eu fazer algo! When send any
 // 3 - O que deveria fazer? should be
@@ -61,21 +54,21 @@ describe("Lista um usuario", () => {
         .set("authorization-token", token);
 
       expect(visualizar.statusCode).toEqual(200);
-      console.log(visualizar.body);
 
       expect(visualizar.body).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
             id: 1,
-            email: "angela@angela.com", 
-            userName: 'angela',
+            email: "angela@angela.com",
+            userName: "angela",
             idPrevilegies: 1,
           }),
         ])
       );
     });
   });
-  describe("Quando eu enviar os dados do usuario angela ", () => {
+
+  describe("Quando eu enviar os dados do usuario angela", () => {
     afterEach(() => {
       TruncateAll.execulte(UserModel);
     });
@@ -92,14 +85,13 @@ describe("Lista um usuario", () => {
         .set("authorization-token", token);
 
       expect(visualizar.statusCode).toEqual(200);
-      console.log(visualizar.body);
 
       expect(visualizar.body).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
             id: 1,
-            email: "angela@angela.com", 
-            userName: 'angela',
+            email: "angela@angela.com",
+            userName: "angela",
             idPrevilegies: 1,
           }),
         ])
@@ -108,87 +100,36 @@ describe("Lista um usuario", () => {
   });
 });
 
-// describe("Delete Users", () => {
-//   describe("When send METHOD = DELETE in the routers api/users/", () => {
-//     afterEach(() => {
-//       TruncateAll.execulte(UserModel);
-//     });
+describe('Delete um Usuário', () => {
+  describe("Quando eu enviar os dados do usuario angela api/admin/users/", () => {
+    afterEach(() => {
+      TruncateAll.execulte(UserModel);
+    });
 
-//     it("Should to find one user and to remove User", async () => {
-//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-//       const createUser = await request(app)
-//         .post("/api/users")
-//         .set("authorization-token", token)
-//         .send(angela);
+    it("Deveria ser capaz de encontrar usuário e deletá-lo", async () => {
+      const token = await GenerateToken.execulte({ id: 1, previlegie: 1 });
+      const createUser = await request(app)
+        .post("/api/admin/users")
+        .set("authorization-token", token)
+        .send(angela);
 
-//       const showUserForDelete = await request(app)
-//         .get("/api/users/1")
-//         .set("authorization-token", token);
-//       const deleted = await request(app)
-//         .delete("/api/users/1")
-//         .set("authorization-token", token);
+      const showUserForDelete = await request(app)
+        .get("/api/admin/users/1")
+        .set("authorization-token", token);
 
-//       expect(deleted.statusCode).toEqual(200);
-//       expect(deleted.body).toHaveProperty("msg");
-//       expect(deleted.body.msg).toBe("User deleted with success");
-//     });
-//   });
-// });
+        
+      const deleted = await request(app)
+        .delete("/api/admin/users/1")
+        .set("authorization-token", token);
 
-// describe("List Users", () => {
-//   describe("When send GET in the routers api/users/", () => {
-//     afterEach(() => {
-//       TruncateAll.execulte(UserModel);
-//     });
+        console.info(deleted.body)
 
-//     it("Should to find all users registed and show all", async () => {
-//       // Create on new list of users
-//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
+      expect(deleted.statusCode).toEqual(200);
+      expect(deleted.body).toHaveProperty("msg");
+    });
+  });
+});
 
-//       const first = await request(app)
-//         .post("/api/users")
-//         .set("authorization-token", token)
-//         .send(angela);
-
-//       const second = await request(app)
-//         .post("/api/users")
-//         .set("authorization-token", token)
-//         .send(gabiroba);
-
-//       const third = await request(app)
-//         .post("/api/users")
-//         .set("authorization-token", token)
-//         .send(zelanbida);
-
-//       const res = await request(app)
-//         .get("/api/users")
-//         .set("authorization-token", token);
-
-//       expect(res.statusCode).toEqual(200);
-//     });
-//   });
-
-//   describe("When send GET in the routers api/users/1", () => {
-//     afterEach(() => {
-//       TruncateAll.execulte(UserModel);
-//     });
-
-//     it("Should to find one user registed and to show your datas", async () => {
-//       const token = await GenerateToken.execulte({ id: 1, previlegie: 2 });
-//       // Create on new list of users
-//       const first = await request(app)
-//         .post("/api/users")
-//         .set("authorization-token", token)
-//         .send(gabiroba);
-
-//       const res = await request(app)
-//         .get("/api/users/1")
-//         .set("authorization-token", token);
-
-//       expect(res.statusCode).toEqual(200);
-//     });
-//   });
-// });
 
 // describe("Update Users", () => {
 //   describe("When send METHOD = PUT in the routers api/users/", () => {

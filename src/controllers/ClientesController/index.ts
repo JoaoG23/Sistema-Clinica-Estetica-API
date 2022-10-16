@@ -134,65 +134,6 @@ class ClientesControlllers {
     }
   }
 
-
-  public async scheduleTheTime(req: Request, res: Response) {
-    try {
-      let idFound = req.params.id;
-      if (!idFound) {
-        idFound = req.body.id;
-      }
-      
-      const agendamento = await ListOneDataService.execulte(Agendamentos,{id: idFound});
-      const cliente = await ListOneDataService.execulte(Cliente,{id: req.body.id_cliente});
-      const tipoServico = await ListOneDataService.execulte(TipoServicos,{id: req.body.id_tipo_servico})
-
-      const validateIfExists = agendamento && cliente ? true : false;
-      if (!validateIfExists) {
-        return res
-          .status(400)
-          .json(new MessageReturns(false, "Cliente ou agendamento não existe!"));
-      }
-
-      if (!tipoServico) {
-        return res
-          .status(400)
-          .json(new MessageReturns(false, "Esse tipo de servico não existe!"));
-      }
-
-      const data = await EditDataService.execulte(Agendamentos, req.body, {
-        id: idFound,
-      });
-
-      res
-        .status(200)
-        .json(new MessageReturns(true, "Horario marcado com sucesso"));
-    } catch (error) {
-      res.status(400).json(new MessageReturns(true, "Erro ao marca horario"));
-      console.error(error);
-    }
-  }
-
-
-
-  public async clearTime(req: Request, res: Response) {
-    try {
-      let idFound = req.params.id;
-      if (!idFound) {
-        idFound = req.body.id;
-      }
-      
-      const data = await EditDataService.execulte(Agendamentos, req.body, {
-        id: idFound,
-      });
-
-      res
-        .status(200)
-        .json(new MessageReturns(true, "Horario desmarcado com sucesso"));
-    } catch (error) {
-      res.status(400).json(new MessageReturns(true, "Erro ao marca horario"));
-      console.error(error);
-    }
-  }
 }
 
 export default new ClientesControlllers();

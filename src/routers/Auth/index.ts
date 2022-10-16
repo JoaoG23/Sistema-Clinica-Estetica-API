@@ -23,7 +23,6 @@ class Auth {
 
   public async operador(req: Request, res: Response, next: NextFunction) {
     if (req.userData.previlegie === 2) {
-      console.log(req.userData)
       next();
     } else {
       res

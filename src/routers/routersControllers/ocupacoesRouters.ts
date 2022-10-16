@@ -1,6 +1,6 @@
 import { Router } from "express";
 const routers = Router();
-import OcupacoesController from '../controllers/OcupacoesController'
+import OcupacoesController from "../../controllers/OcupacoesController";
 
 routers.get("/", OcupacoesController.listAll);
 routers.get("/:id", OcupacoesController.listOneById);

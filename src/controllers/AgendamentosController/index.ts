@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-// Type
+// Model
+import Cliente from "../../model/schemas/ClienteModel";
+import Agendamentos from "../../model/schemas/AgendamentosModel";
+import Funcionario from "../../model/schemas/FuncionarioModel";
+import TipoServicos from "../../model/schemas/TiposServicosModel";
 
 // Services
 import MessageReturns from "../services/MessageReturns";
@@ -9,12 +13,11 @@ import ListAllService from "../services/ListAll";
 import DeleteDataService from "../services/Delete";
 import EditDataService from "../services/Edit";
 import ListAllByCriteriaService from "../services/ListAllByCriteria";
-import Agendamentos from "../../model/schemas/AgendamentosModel";
-import Funcionario from "../../model/schemas/FuncionarioModel";
 import TodosAgendamentoDoCliente from "../services/specificServices/TodosAgendamentoDoCliente";
 import TodosAgendamentoDoFuncionario from "../services/specificServices/TodosAgendamentoDoFuncionario";
 import AgendamentoDoClienteHoje from "../services/specificServices/AgendamentoDoClienteHoje";
 import AgendamentoDoFuncionarioHoje from "../services/specificServices/AgendamentoDoFuncionarioHoje";
+import MarcadosOuNaoAgendamentoDoFuncionario from "../services/specificServices/MarcadosOuNaoAgendamentoDoFuncionario";
 
 class AgendamentosControlllers {
   public async create(req: Request, res: Response) {
@@ -49,7 +52,6 @@ class AgendamentosControlllers {
           data: data,
         });
 
-
       if (isValidateIfExistsHorarioAndFuncionario) {
         return res
           .status(400)
@@ -61,7 +63,10 @@ class AgendamentosControlllers {
           );
       }
 
-      const isFuncionarioFound = await ListOneDataService.execulte(Funcionario,{id: id_funcionario});
+      const isFuncionarioFound = await ListOneDataService.execulte(
+        Funcionario,
+        { id: id_funcionario }
+      );
       if (!isFuncionarioFound) {
         return res
           .status(400)
@@ -72,7 +77,7 @@ class AgendamentosControlllers {
             )
           );
       }
-    
+
       await CreateDataService.execulte(Agendamentos, req.body);
 
       res
@@ -149,8 +154,8 @@ class AgendamentosControlllers {
   public async listAllByIdCliente(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const agendamentosFound = await TodosAgendamentoDoCliente.execulte(id)
-      
+      const agendamentosFound = await TodosAgendamentoDoCliente.execulte(id);
+
       if (!agendamentosFound) {
         return res
           .status(400)
@@ -165,12 +170,15 @@ class AgendamentosControlllers {
     }
   }
 
-  public async listAllByIdClienteToday(req: Request, res: Response) {
+  public async listAllByIdClienteAndDate(req: Request, res: Response) {
     try {
       const { id, data } = req.query;
-      
-      const agendamentosFound = await AgendamentoDoClienteHoje.execulte(id, data)
-      
+
+      const agendamentosFound = await AgendamentoDoClienteHoje.execulte(
+        id,
+        data
+      );
+
       if (!agendamentosFound) {
         return res
           .status(400)
@@ -186,10 +194,11 @@ class AgendamentosControlllers {
   }
 
   public async listAllByIdFuncionario(req: Request, res: Response) {
-
     try {
       const { id } = req.params;
-      const agendamentosFound = await TodosAgendamentoDoFuncionario.execulte(id)
+      const agendamentosFound = await TodosAgendamentoDoFuncionario.execulte(
+        id
+      );
 
       if (!agendamentosFound) {
         return res
@@ -205,11 +214,63 @@ class AgendamentosControlllers {
     }
   }
 
-  public async listAllByIdFuncionarioToday(req: Request, res: Response) {
+  public async listAllByIdFuncionarioAndDate(req: Request, res: Response) {
     try {
       const { id, data } = req.query;
-      
-      const agendamentosFound = await AgendamentoDoFuncionarioHoje.execulte(id, data)
+
+      const agendamentosFound = await AgendamentoDoFuncionarioHoje.execulte(
+        id,
+        data
+      );
+
+      if (!agendamentosFound) {
+        return res
+          .status(400)
+          .json(new MessageReturns(false, "Agendamento nao existe"));
+      }
+      res.status(200).json(agendamentosFound);
+    } catch (error) {
+      res
+        .status(400)
+        .json(new MessageReturns(false, "Error to list Agendamento"));
+      console.error(error);
+    }
+  }
+
+
+  public async listAllByIdFuncionarioDataMarcados(req: Request, res: Response) {
+    try {
+      const { id, data } = req.query;
+
+      const agendamentosFound = await MarcadosOuNaoAgendamentoDoFuncionario.execulte(
+        id,
+        data,
+        true
+      );
+
+      if (!agendamentosFound) {
+        return res
+          .status(400)
+          .json(new MessageReturns(false, "Agendamento nao existe"));
+      }
+      res.status(200).json(agendamentosFound);
+    } catch (error) {
+      res
+        .status(400)
+        .json(new MessageReturns(false, "Error to list Agendamento"));
+      console.error(error);
+    }
+  }
+
+  public async listAllByIdFuncionarioDataDesmarcados(req: Request, res: Response) {
+    try {
+      const { id, data } = req.query;
+
+      const agendamentosFound = await MarcadosOuNaoAgendamentoDoFuncionario.execulte(
+        id,
+        data,
+        false
+      );
 
       if (!agendamentosFound) {
         return res
@@ -275,7 +336,7 @@ class AgendamentosControlllers {
           .json(new MessageReturns(false, "Agendamento procurado não existe"));
       }
 
-      const data = await EditDataService.execulte(Agendamentos, req.body, {
+      await EditDataService.execulte(Agendamentos, req.body, {
         id: idFound,
       });
       res
@@ -283,6 +344,86 @@ class AgendamentosControlllers {
         .json(new MessageReturns(true, "Agendamento atualizado com sucesso"));
     } catch (error) {
       res.status(400).json(new MessageReturns(false, "Erro no agendamento"));
+      console.error(error);
+    }
+  }
+
+  public async scheduleTheTime(req: Request, res: Response) {
+    try {
+      let idFound = req.params.id;
+      if (!idFound) {
+        idFound = req.body.id;
+      }
+
+      const { id_cliente, id_tipo_servico } = req.body;
+      
+      const agendamento = await ListOneDataService.execulte(Agendamentos, {
+        id: idFound,
+      });
+      const cliente = await ListOneDataService.execulte(Cliente, {
+        id: id_cliente,
+      });
+      const tipoServico = await ListOneDataService.execulte(TipoServicos, {
+        id: id_tipo_servico,
+      });
+
+      const validateIfExists = agendamento && cliente ? true : false;
+      if (!validateIfExists) {
+        return res
+          .status(400)
+          .json(
+            new MessageReturns(false, "Cliente ou agendamento não existe!")
+          );
+      }
+
+      if (!tipoServico) {
+        return res
+          .status(400)
+          .json(new MessageReturns(false, "Esse tipo de servico não existe!"));
+      }
+
+      const dadosMarcacao = {
+        id_cliente: id_cliente,
+        is_marcado:true,
+        id_tipo_servico: id_tipo_servico,
+      };
+
+      await EditDataService.execulte(Agendamentos, dadosMarcacao, {
+        id: idFound,
+      });
+
+      res
+        .status(200)
+        .json(new MessageReturns(true, "Horario marcado com sucesso"));
+    } catch (error) {
+      res.status(400).json(new MessageReturns(true, "Erro ao marca horario"));
+      console.error(error);
+    }
+  }
+
+  public async clearTime(req: Request, res: Response) {
+    try {
+      let idFound = req.params.id;
+      if (!idFound) {
+        idFound = req.body.id;
+      }
+
+      // deixa null a desmarcando a marcação
+      const dadosMarcacao = {
+        id_cliente: null,
+        is_marcado:false,
+        id_tipo_servico: null,
+      };
+
+     await EditDataService.execulte(Agendamentos, dadosMarcacao, {
+        id: idFound,
+      });
+
+      res
+        .status(200)
+        .json(new MessageReturns(true, "Horario desmarcado com sucesso"));
+    } catch (error) {
+      res.status(400).json(new MessageReturns(true, "Erro ao marca horario"));
       console.error(error);
     }
   }

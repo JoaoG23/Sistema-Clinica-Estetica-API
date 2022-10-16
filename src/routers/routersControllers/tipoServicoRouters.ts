@@ -1,7 +1,6 @@
 import { Router } from "express";
 const routers = Router();
-import TipoServicoController from "../controllers/TipoServicoController";
-
+import TipoServicoController from "../../controllers/TipoServicoController";
 
 routers.get("/", TipoServicoController.listAll);
 routers.get("/:id", TipoServicoController.listOneById);

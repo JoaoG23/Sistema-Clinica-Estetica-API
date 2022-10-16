@@ -2,6 +2,7 @@ import { Optional } from "sequelize";
 
 export interface AgendamentosAttributes {
     id?: number;
+    is_marcado?:boolean;
     data?:Date;
     horario?:string;
     id_cliente?:number;

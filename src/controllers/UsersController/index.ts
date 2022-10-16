@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 import UserModel from "../../model/schemas/UserModel";
 
-import { Previlegie } from '../../types/Previlegie'
+import { Previlegie } from "../../types/Previlegie";
 import { User } from "../../types/User";
 // Services
 import MessageReturns from "../services/MessageReturns";
@@ -16,46 +16,47 @@ import GenerateToken from "../services/GenerateToken";
 import Funcionario from "../../model/schemas/FuncionarioModel";
 import Cliente from "../../model/schemas/ClienteModel";
 
-
 class UsersControlllers {
   public async create(req: Request, res: Response) {
     try {
-
+      const { email, userName } = req.body;
       const emailFound = await ListOneDataService.execulte(UserModel, {
-        email: req.body.email,
+        email: email,
       });
 
       if (emailFound) {
         return res
           .status(400)
-          .json(new MessageReturns(false, "This Email already exists"));
+          .json(new MessageReturns(false, "Esse email já existe tente outro"));
       }
 
-      const userName = await ListOneDataService.execulte(UserModel, {
-        userName: req.body.userName,
+      const userNameFound = await ListOneDataService.execulte(UserModel, {
+        userName: userName,
       });
 
-      if (userName) {
+      if (userNameFound) {
         return res
           .status(400)
-          .json(new MessageReturns(false, "This username already exists try to another"));
+          .json(
+            new MessageReturns(false, "Esse userName já existe! Tente outro!")
+          );
       }
 
       const dataNewUser: User = {
         userName: req.body.userName,
         password: bcrypt.hashSync(req.body.password),
         email: req.body.email,
-        idPrevilegies: req.body.idPrevilegies
+        idPrevilegies: req.body.idPrevilegies,
       };
-      
+
       await CreateDataService.execulte(UserModel, dataNewUser);
       res
         .status(201)
-        .json(new MessageReturns(true, "User inserted with success"));
+        .json(new MessageReturns(true, "Usuário criado com sucesso"));
     } catch (error) {
       res
         .status(400)
-        .send(new MessageReturns(false, "There is error operation with user"));
+        .send(new MessageReturns(false, "Houve um erro na criação usuário"));
       console.error(error);
     }
   }
@@ -108,15 +109,15 @@ class UsersControlllers {
     }
   }
 
-
   public async login(req: Request, res: Response) {
-
     try {
       const { userName, password } = req.body;
 
-      const response = await ListUserLoginByUsername.execulte(userName as string);
+      const response = await ListUserLoginByUsername.execulte(
+        userName as string
+      );
 
-      const userFound:Previlegie = response[0];
+      const userFound: Previlegie = response[0];
       if (!userFound) {
         return res
           .status(400)
@@ -140,40 +141,37 @@ class UsersControlllers {
         previlegie: userFound.powerforce,
       });
 
-      
       // Verifica se e funcionario ou cliente
 
       let dadosImportantes;
       const isFuncionario = await ListOneDataService.execulte(Funcionario, {
         id_usuario: userFound.id,
-      })
+      });
       const isCliente = await ListOneDataService.execulte(Cliente, {
-         id_usuario: userFound.id,
-       })
+        id_usuario: userFound.id,
+      });
 
       if (isFuncionario) {
-        dadosImportantes = isFuncionario
+        dadosImportantes = isFuncionario;
       } else {
-        dadosImportantes = isCliente
+        dadosImportantes = isCliente;
       }
-      
-      console.log('Funcionario ', isFuncionario);
-      console.log('Cliente' ,isCliente);
-      type ShowUserData = Omit<Previlegie, "password">
+
+      console.log("Funcionario ", isFuncionario);
+      console.log("Cliente", isCliente);
+      type ShowUserData = Omit<Previlegie, "password">;
 
       // Dados do Usuario
-      const userData:ShowUserData = {
-        id:userFound.id,
-        powerforce:userFound.powerforce,
-        datas:dadosImportantes
-      } 
-
-
+      const userData: ShowUserData = {
+        id: userFound.id,
+        powerforce: userFound.powerforce,
+        datas: dadosImportantes,
+      };
 
       // insert token in code
       res.header("authorization-token", token);
       res.status(200).json({
-        userData:userData ,
+        userData: userData,
         situation: true,
         msg: "User logged in success",
         tokenUser: token,
@@ -201,21 +199,17 @@ class UsersControlllers {
       if (!userFound) {
         return res
           .status(400)
-          .json(
-            new MessageReturns(false, "User not exists for he to be removed")
-          );
+          .json(new MessageReturns(false, "Esse Usuário não existe"));
       }
 
-      await DeleteDataService.execulte(UserModel, {
-        id: idFound,
-      });
+      const deletar = await DeleteDataService.execulte(UserModel, { id: idFound });
       res
         .status(200)
-        .json(new MessageReturns(true, "User deleted with success"));
+        .json(new MessageReturns(true, "Usuário removido com sucesso"));
     } catch (error) {
       res
         .status(400)
-        .send(new MessageReturns(false, "There is error operation with user"));
+        .send(new MessageReturns(false, "Houve um erro na remoção do usuário"));
       console.error(error);
     }
   }
@@ -234,7 +228,7 @@ class UsersControlllers {
       if (!userFound) {
         return res
           .status(400)
-          .json(new MessageReturns(false, "User not exists for updated"));
+          .json(new MessageReturns(false, 'Usuário não existe no sistema'));
       }
 
       const newData: User = {
@@ -251,11 +245,11 @@ class UsersControlllers {
 
       res
         .status(200)
-        .json(new MessageReturns(true, "User updated with success"));
+        .json(new MessageReturns(true, 'Usuário editado com sucesso'));
     } catch (error) {
       res
         .status(400)
-        .send(new MessageReturns(false, "There is error operation with user"));
+        .send(new MessageReturns(false, 'Houve um erro na edição do usuário'));
       console.error(error);
     }
   }
@@ -272,7 +266,7 @@ class UsersControlllers {
       if (!userFound) {
         return res
           .status(400)
-          .json(new MessageReturns(false, "Email don't exists of system"));
+          .json(new MessageReturns(false, 'Esse email não existe no sistema'));
       }
 
       await EditDataService.execulte(
@@ -290,13 +284,13 @@ class UsersControlllers {
         .json(
           new MessageReturns(
             true,
-            "Password change with success! Try to login, Please!"
+            'Senha alterada com sucesso, Tente se logar com a nova senha!'
           )
         );
     } catch (error) {
       res
         .status(400)
-        .send(new MessageReturns(false, "There is error operation with user"));
+        .send(new MessageReturns(false, 'Houve um erro na troca de senha'));
       console.error(error);
     }
   }

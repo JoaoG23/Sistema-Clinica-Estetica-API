@@ -1,6 +1,6 @@
 import { Router } from "express";
 const routers = Router();
-import PrevilegiesUserController from '../controllers/PrevilegiesUsersController';
+import PrevilegiesUserController from "../../controllers/PrevilegiesUsersController";
 
 routers.get("/", PrevilegiesUserController.listAll);
 routers.get("/:id", PrevilegiesUserController.listOneById);

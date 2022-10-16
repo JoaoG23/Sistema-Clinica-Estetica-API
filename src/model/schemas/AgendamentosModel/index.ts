@@ -7,6 +7,7 @@ class Agendamentos
   implements AgendamentosAttributes
 {
   public id: number;
+  public is_marcado?: boolean;
   public data?: Date;
   public horario?: string;
   public id_cliente?: number;
@@ -24,6 +25,10 @@ Agendamentos.init(
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
+    },
+    is_marcado: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
     },
     data: {
       type: DataTypes.DATEONLY,

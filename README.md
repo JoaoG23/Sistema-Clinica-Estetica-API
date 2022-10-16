@@ -2,7 +2,7 @@
 
 <div  align=center >
 
-<h1>ZauEstetica-API 💅🏽 🚨Em Desenvolvimento<h1>
+<h1>SistemaClinicaEstetica-API 💅🏽 <h1>
 
 <img width='200px' src="./assets/logo.svg" />
 
@@ -40,7 +40,7 @@ Sistema Zau-estetica é um voltado para o gestão de agendamento de clientes, o 
 **Funcionalidade**
 
 - [x]  Rota de Usuário e Autenticação
-- [x]  Rota de Tipos de Usuario
+- [x]  Rota de Tipos de Usuário
 - [X]  Rota de Agendamento
 - [X]  Rota de Clientes
 - [X]  Rota de Funcionarios
@@ -50,7 +50,7 @@ Sistema Zau-estetica é um voltado para o gestão de agendamento de clientes, o 
 
 **Testando**
 - [x]  Rota de Usuário e Autenticação
-- [ ]  Rota de Tipos de Usuario
+- [ ]  Rota de Tipos de Usuário
 - [ ]  Rota de Agendamento
 - [ ]  Rota de Clientes
 - [ ]  Rota de Funcionarios
@@ -120,7 +120,7 @@ Exemplo preenchido .env:
 
 Se ele der algum erro, digite o comando acima novamente.
 
-8. Em seguida digite para criar os previlegios do usuario **tabela previlegie_users** no banco de dados.
+8. Em seguida digite para criar os previlegios do usuário **tabela previlegie_users** no banco de dados.
 
       npx sequelize-cli db:seed:all
 
@@ -171,17 +171,17 @@ Teste, **_Insomnia ou postman_** de sua preferencia.
 
 <!-- <img width='700px' src="./assets/fluxo.png" /> -->
 
-Cada usuário usuario pode ser logar 
+Cada usuário usuário pode ser logar 
 
 Basicamente tem 8 Rotas principais !
 
 1. Rota de Usuário e Autenticação = Onde o usuário faz login e ser registrar
-1. Rota de Tipos de Usuario = Tipo determina quais rotas o usuario pode acessar 
-1. Rota de Clientes = Apos cadastrar o usuario este pode ser atribuido ou um cliente ou um funcionario nunca o mesmo
-1. Rota de Funcionarios = Apos cadastrar o usuario este pode ser atribuido ou um cliente ou um funcionario nunca o mesmo
+1. Rota de Tipos de Usuário = Tipo determina quais rotas o usuário pode acessar 
+1. Rota de Clientes = Após cadastrar o usuário este pode ser atribuido ou um cliente ou um funcionario nunca o mesmo
+1. Rota de Funcionarios = Após cadastrar o usuário este pode ser atribuido ou um cliente ou um funcionario nunca o mesmo
 1. Rota de Ocupacoes = Cadastrado algumas ocupacoes dos funcionario do centro estetico
 1. Rota de Agendamento = Quando um funcionario abre a sua agenda o cliente podera escolher um horario, 
-1. Rota de Tipo de Serviços = Apos o cliente marcar um horario poderá se atribuido um servico.
+1. Rota de Tipo de Serviços = Após o cliente marcar um horario poderá se atribuido um servico.
 
 
 O sistema de autenticacão foi feito nas rotas da api. 

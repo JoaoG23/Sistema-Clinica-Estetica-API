@@ -178,6 +178,10 @@ module.exports = {
               allowNull: false,
               primaryKey: true,
             },
+            is_marcado: {
+              type: Sequelize.DataTypes.BOOLEAN,
+              defaultValue:false
+            },
             data: {
               type: Sequelize.DataTypes.DATEONLY,
               allowNull: false,

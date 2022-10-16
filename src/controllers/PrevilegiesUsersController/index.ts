@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 // Type
-import { PrevilegieUser } from "../../types/PrevilegieUser";
 
 // Services
 import MessageReturns from "../services/MessageReturns";
@@ -9,7 +8,6 @@ import ListOneDataService from "../services/ListOne";
 import ListAllService from "../services/ListAll";
 import DeleteDataService from "../services/Delete";
 import EditDataService from "../services/Edit";
-import ListAllByCriteriaService from "../services/ListAllByCriteria";
 import PrevilegiesUsers from "../../model/schemas/PrevilegiesUserModel";
 
 class PrevilegieUsersControlllers {
