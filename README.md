@@ -2,7 +2,7 @@
 
 <div  align=center >
 
-<h1>SistemaClinicaEstetica-API 💅🏽 <h1>
+<h1>Sistema-Clinica-Estetica-API 💅🏽 <h1>
 
 <img width='200px' src="./assets/logo.svg" />
 
