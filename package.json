@@ -1,15 +1,14 @@
 {
-  "name": "APITrajetoriaDoPeso",
+  "name": "Poligono-teste-API",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "prod": "node dist/index.js",
+    "prod": "NODE_ENV=dev node dist/src/server.js",
     "build": "tsc",
-    "deploy": "vercel deploy --prod",
-    "test": "vitest",
-    "dev": "npx nodemon --exec ts-node --files src/index.ts",
-    "start": "ts-node ./src/index.ts"
+    "test": "NODE_ENV=test vitest",
+    "dev": "NODE_ENV=dev npx nodemon --exec ts-node --files src/server.ts",
+    "start": "NODE_ENV=test ts-node ./src/server.ts"
   },
   "keywords": [],
   "author": "",
