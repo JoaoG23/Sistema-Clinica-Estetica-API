@@ -20,19 +20,6 @@ code first
 
 **Toda a migrations tem o comando de up (criar uma versão acima) down (voltar uma versao abaixo ou excluir o que foi feito)**
 
-#### Criando Base de dados e estrutura.
-##### Teste
-
-1. Criar base de dados testes :**NODE_ENV=test npx sequelize-cli db:create**
-1. Criar as tabelas;
-**NODE_ENV=test npx sequelize-cli db:migrate**
-
-##### Desenvolvimento
-
-1. Criar base de dados testes :**NODE_ENV=dev npx sequelize-cli db:create**
-1. Criar as tabelas;
-**NODE_ENV=dev npx sequelize-cli db:migrate**
-
 1. Criar suas table como esta no aquivo migrations
 1. Digite o comando para execultar as alteracoes
 1. **npx sequelize-cli db:migrate**

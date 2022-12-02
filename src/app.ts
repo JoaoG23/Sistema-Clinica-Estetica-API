@@ -1,13 +1,9 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+import "dotenv/config";
 
-if (process.env.NODE_ENV !== "dev") {
-  dotenv.config({ path: "./.env.test" });
-}
-dotenv.config();
+import allRouters from "./routers/controlRouters/allRouters";
 
-import allRouters from "./routers/allRouters";
 class App {
   public express: express.Application;
 
